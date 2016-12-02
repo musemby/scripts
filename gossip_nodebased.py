@@ -29,5 +29,41 @@ class Node():
     def __repr__(self):
         return self.name
 
-    def gossip(self, message):
-        
+    def gossip(self, message=None):
+        if message:
+            forward_mode = True
+            self.received_messages.append(message)
+            print("At {0}: Received message: {1} from {2}".format(self.name, message.id, message.sender.name))
+        else:
+            # create a new message from this node
+            forward_mode = False
+            message = Message(self)
+
+        for node in self.neighbors:
+            node = get_node(node, node_list)
+
+            if message in node.received_messages:
+                pass
+            else:
+                if forward_mode:
+                    # set this node as the sender and forward
+                    message.sender = self
+                    print("At {0} Sending to {1}".format(self.name, node.name))
+                else:
+                    # print("Infected nodes are {}".format(message.infected_nodes))
+                    print("Starting the gossip. Sending from",
+                        message.sender.name, "to", node.name)
+                node.gossip(message=message)
+
+
+node_list = [
+    Node('node1', neighbors=['node3', 'node2']),
+    Node('node2', neighbors=['node1', 'node4', 'node5']),
+    Node('node3', neighbors=['node1']),
+    Node('node4', neighbors=['node2']),
+    Node('node5', neighbors=['node2', 'node6', 'node7']),
+    Node('node6', neighbors=['node5']),
+    Node('node7', neighbors=['node5'])
+]
+
+node_list[3].gossip()
