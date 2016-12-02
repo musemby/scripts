@@ -26,6 +26,7 @@ class Node():
     def __init__(self, name, neighbors=None):
         self.name = name
         self.neighbors = neighbors
+        self.received_messages = []
 
     def __repr__(self):
         return self.name
