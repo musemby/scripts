@@ -4,6 +4,7 @@ import json
 
 '''
     This is a super simple and naive illustration of the gossip algorithm
+    author: @musemby
 '''
 
 

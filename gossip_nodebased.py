@@ -2,7 +2,13 @@ import random
 import time
 import json
 
-# get a node from a node name
+'''
+    This is an illustration of the gossip algorithm
+    author: @musemby
+'''
+
+
+# get a node from a node name (this makes for an easier structuring of the graph)
 def get_node(node_name, node_list):
     return next((i for i in node_list if i.name == node_name), None)
 
@@ -13,9 +19,11 @@ class Message():
         self.sender = sender
         self.text = 'Message from {0} at {1}'.format(sender.name,
             time.strftime('%Y-%m-%d %H:%M:%S'))
+        # the sender has already 'received the message'
         sender.received_messages.append(self)
 
     def __repr__(self):
+        # the string representation of the message
         return self.text
 
 
@@ -27,15 +35,17 @@ class Node():
         self.received_messages = []
 
     def __repr__(self):
+        # the string representation of the node
         return self.name
 
     def gossip(self, message=None):
+        # called with a message only when current node is not the original sender (message is a forward)
         if message:
             forward_mode = True
             self.received_messages.append(message)
             print("At {0}: Received message: {1} from {2}".format(self.name, message.id, message.sender.name))
         else:
-            # create a new message from this node
+            # otherwise this is the originator of the message so we create a new message for it to send
             forward_mode = False
             message = Message(self)
 
@@ -43,16 +53,18 @@ class Node():
             node = get_node(node, node_list)
 
             if message in node.received_messages:
+                # already received the message so do nothing
                 pass
             else:
                 if forward_mode:
-                    # set this node as the sender and forward
+                    # set self as sender in preparation for forwarding
                     message.sender = self
                     print("At {0} Sending to {1}".format(self.name, node.name))
                 else:
-                    # print("Infected nodes are {}".format(message.infected_nodes))
+                    # otherwise prepare to start a new send
                     print("Starting the gossip. Sending from",
                         message.sender.name, "to", node.name)
+                # do actual sending by recursively calling the node's gossip method
                 node.gossip(message=message)
 
 
