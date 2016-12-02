@@ -34,9 +34,8 @@ class Node():
     def gossip(self, message=None):
         if message:
             forward_mode = True
-            message = message
             message.infected_nodes.append(self)
-            print("At {0}: Received from".format(self.name), message.sender.name)
+            print("At {0}: Received from {1}".format(self.name, message.sender.name))
         else:
             forward_mode = False
             message = Message(self)
@@ -51,7 +50,7 @@ class Node():
                     message.sender = self
                     print("At {0} Sending to {1}".format(self.name, node.name))
                 else:
-                    print("Infected nodes are {}".format(message.infected_nodes))
+                    # print("Infected nodes are {}".format(message.infected_nodes))
                     print("Starting the gossip. Sending from",
                         message.sender.name, "to", node.name)
                 node.gossip(message=message)
