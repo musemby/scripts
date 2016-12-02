@@ -81,5 +81,4 @@ node_list = [
     Node('node7', neighbors=['node5'])
 ]
 
-node_list[3].gossip()
-node_list[5].gossip()
+node_list[4].gossip()

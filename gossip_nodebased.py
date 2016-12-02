@@ -1,6 +1,5 @@
 import random
 import time
-import json
 
 '''
     This is an illustration of the gossip algorithm
@@ -43,13 +42,13 @@ class Node():
         if message:
             forward_mode = True
             self.received_messages.append(message)
-            print("At {0}: Received message: {1} from {2}".format(self.name, message.id, message.sender.name))
         else:
             # otherwise this is the originator of the message so we create a new message for it to send
             forward_mode = False
             message = Message(self)
 
         for node in self.neighbors:
+            # potential recipient
             node = get_node(node, node_list)
 
             if message in node.received_messages:
@@ -59,11 +58,11 @@ class Node():
                 if forward_mode:
                     # set self as sender in preparation for forwarding
                     message.sender = self
-                    print("At {0} Sending to {1}".format(self.name, node.name))
+                    print("At {0} Sending to {1}".format(message.sender.name, node.name))
                 else:
                     # otherwise prepare to start a new send
                     print("Starting the gossip. Sending from",
-                        message.sender.name, "to", node.name)
+                        self.name, "to", node.name)
                 # do actual sending by recursively calling the node's gossip method
                 node.gossip(message=message)
 
@@ -72,10 +71,10 @@ node_list = [
     Node('node1', neighbors=['node3', 'node2']),
     Node('node2', neighbors=['node1', 'node4', 'node5']),
     Node('node3', neighbors=['node1']),
-    Node('node4', neighbors=['node2']),
-    Node('node5', neighbors=['node2', 'node6', 'node7']),
+    Node('node4', neighbors=['node2', 'node5']),
+    Node('node5', neighbors=['node2', 'node4', 'node6', 'node7']),
     Node('node6', neighbors=['node5']),
     Node('node7', neighbors=['node5'])
 ]
 
-node_list[3].gossip()
+node_list[4].gossip()
