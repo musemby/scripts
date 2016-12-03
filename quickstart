@@ -1,31 +1,29 @@
 #!/bin/bash
 
-: <<'introduction'
+: <<docstring
 	This is intended to install all the common software, libs, packages, modules...
 	that I commonly use, on a fresh Ubuntu installation
-introduction
-
-
+docstring
 
 # Chromium
-sudo apt-get install chromium-browser
+sudo apt-get --assume-yes install chromium-browser
 
 # Sublime text
 sudo add-apt-repository ppa:webupd8team/sublime-text-3
-sudo apt-get update
-sudo apt-get install sublime-text-installer
+sudo apt-get --assume-yes update
+sudo apt-get --assume-yes install sublime-text-installer
 
 # Terminator
-sudo apt-get terminator
+sudo apt-get --assume-yes terminator
 # TODO – configure terminator programatically
 
 # Git
-sudo apt-get install git
+sudo apt-get --assume-yes install git
 
 # Nodejs
-sudo apt-get install nodejs-legacy
+sudo apt-get --assume-yes install nodejs-legacy
 # npm
-sudo apt-get install npm
+sudo apt-get --assume-yes install npm
 # update nodejs using n and make a symbolic link
 sudo npm cache clean -f
 sudo npm install -g n
@@ -42,49 +40,47 @@ npm install grunt
 sudo npm install -g grunt-cli
 
 # python3-dev
-sudo apt-get install python3-dev
-sudo apt-get install redis-server
+sudo apt-get --assume-yes install python3-dev
+sudo apt-get --assume-yes install redis-server
 
 # Postgresql
-sudo apt-get install postgresql postgresql-contrib
-sudo apt-get install python-psycopg2
+sudo apt-get --assume-yes install postgresql postgresql-contrib
+sudo apt-get --assume-yes install python-psycopg2
 
-sudo apt-get install libpq-dev
-sudo apt-get install memcached
+sudo apt-get --assume-yes install libpq-dev
+sudo apt-get --assume-yes install memcached
 
 # for cairocffi
-sudo apt-get install libffi-dev
+sudo apt-get --assume-yes install libffi-dev
 
-sudo apt-get install libmemcached-dev
+sudo apt-get --assume-yes install libmemcached-dev
 
 # pip installation and upgrade
-sudo apt-get install python-pip
+sudo apt-get --assume-yes install python-pip
 pip install --upgrade pip
 
 # virtual env
 pip install virtualenvwrapper
 
-export WORKON_HOME=~/Envs
-
-# TODO - write this to the .bashrc
-source ~/.local/bin/virtualenvwrapper.sh
+echo "export WORKON_HOME=~/Envs" >> ~/.bashrc
+echo "source ~/.local/bin/virtualenvwrapper.sh" >> ~/.bashrc
 
 # TODO - have these configs
 			# - bashrc aliases and branch highlighting code
-			# - sublime test user settings and user preferences
+			# - sublime text user settings and user preferences
 			# 
 
 # curl
-sudo apt-get install curl
+sudo apt-get --assume-yes install curl
 
 # Install media codecs
 curl ftp://ftp.videolan.org/pub/debian/videolan-apt.asc | sudo apt-key add -
 echo "deb ftp://ftp.videolan.org/pub/debian/stable ./" | sudo tee /etc/apt/sources.list.d/libdvdcss.list
-sudo apt-get update
+sudo apt-get --assume-yes update
 # vlc and mplayer
-sudo apt-get install vlc vlc-data vlc-plugin-pulse browser-plugin-vlc mplayer2
+sudo apt-get --assume-yes install vlc vlc-data vlc-plugin-pulse browser-plugin-vlc mplayer2
 # restricted extras
-sudo apt-get install ubuntu-restricted-extras
+sudo apt-get --assume-yes install ubuntu-restricted-extras
 # full DVD support
-sudo apt-get install libdvdcss2 libdvdnav4 libdvdread4
+sudo apt-get --assume-yes install libdvdcss2 libdvdnav4 libdvdread4
 sudo /usr/share/doc/libdvdread4/install-css.sh
