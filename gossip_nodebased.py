@@ -26,6 +26,7 @@ class Message():
         return self.text
 
 
+
 class Node():
 
     def __init__(self, name, neighbors=None):
@@ -59,10 +60,12 @@ class Node():
                     # set self as sender in preparation for forwarding
                     message.sender = self
                     print("At {0} Sending to {1}".format(message.sender.name, node.name))
+                    time.sleep(1)
                 else:
                     # otherwise prepare to start a new send
                     print("Starting the gossip. Sending from",
                         self.name, "to", node.name)
+                    time.sleep(1)
                 # do actual sending by recursively calling the node's gossip method
                 node.gossip(message=message)
 

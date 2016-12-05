@@ -22,7 +22,6 @@ def get_ordinal(number):
     # every number takes the th
     return number + 'th'
 
-
 if __name__ == '__main__':
     num = int(sys.argv[1])
     print(get_ordinal(num))
