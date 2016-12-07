@@ -5,6 +5,10 @@
 	that I commonly use, on a fresh Ubuntu installation
 docstring
 
+packages=[
+	chromium-browser
+]
+
 
 
 # Chromium

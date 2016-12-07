@@ -3,7 +3,7 @@ import time
 
 '''
     This is an illustration of the gossip algorithm
-    author: @musemby
+    Very far
 '''
 
 
