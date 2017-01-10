@@ -5,7 +5,6 @@ function parse_git_branch () {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-# RED="\[\033[0;31m\]"
 GREEN="\[\033[0;32m\]"
 NO_COLOR="\[\033[0m\]"
 LIGHT_CYAN="\[\033[0;96m\]"
