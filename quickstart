@@ -66,6 +66,9 @@ sudo apt-get install -y libmemcached-dev
 sudo apt-get install -y python-pip
 pip install --upgrade pip
 
+# ipython
+pip install ipython
+
 # virtual env
 pip install virtualenvwrapper
 
@@ -91,3 +94,6 @@ sudo apt-get install -y ubuntu-restricted-extras
 # full DVD support
 sudo apt-get install -y libdvdcss2 libdvdnav4 libdvdread4
 sudo /usr/share/doc/libdvdread4/install-css.sh
+
+# deluge
+sudo apt-get install deluge
