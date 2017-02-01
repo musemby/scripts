@@ -1,6 +1,6 @@
 import time
 
-# count down function used in musemby/poker
+# simple count down function used in musemby/poker
 def count_down(num):
     for num in reversed(range(num)):
         print(num, end='\r')
