@@ -7,6 +7,8 @@ alias backend='env; backdir'
 alias frontend='cd ~/savannah/emr-frontend'
 alias backendrun='backend; ./manage.py runserver'
 alias frontendrun='frontend; grunt connect'
+
+# git stuff
 alias gs='git status'
 alias gp='git pull'
 alias ga='git add'
