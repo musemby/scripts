@@ -1,5 +1,6 @@
 # my aliases
 alias refresh='source ~/.bashrc'
+alias rc='subl ~/.bashrc'
 
 alias env='workon env'
 
