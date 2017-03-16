@@ -8,7 +8,7 @@ A documentation of frequent or rare peculiar situations I come across in my day 
 
 This will catch you on a fresh installation of postgres when you try to run `psql -U postgres`
 
-Solution: Open `/etc/postgresql/9.5/main/pg_hb.conf` with sudo access i.e `sudo nano /etc/postgresql/9.5/main/pg_hb.conf`
+Solution: Open `/etc/postgresql/*.*/main/pg_hb.conf` with sudo access i.e `sudo nano /etc/postgresql/*.*/main/pg_hb.conf`
  Gotcha: If you open the file normally (no sudo) it will be empty and you will be wondering what's going on.
  
  Initially you have this in the file:
