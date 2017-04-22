@@ -1,0 +1,21 @@
+<!-- Generates 12 random numbers between 1 and 9 and prints them on a webpage -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random numbers</title>
+</head>
+<body>
+<h1>Random numbers</h1>
+<script type="text/javascript">
+	function randint() {
+		// Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+		return Math.floor(Math.random() * (9-1+1) + 1);
+	}
+	
+	for(i=0; i<12; i++) {
+		document.write(randint(), ' ')
+	}
+</script>
+</body>
+</html>
