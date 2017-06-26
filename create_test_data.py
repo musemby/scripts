@@ -1,6 +1,10 @@
 import copy
+from datetime import timedelta
+
+from django.utils import timezone
 from sil_edi.beneficiaries.models import *
 from sil_edi.claims.models import *
+from sil_edi.encounters.models import *
 from tests.beneficiaries.utils import test_beneficiary_data
 
 
@@ -27,14 +31,24 @@ bd_fields = {
 
 ref_claim = Claim.objects.first()
 
+cl_data = {
+    "updated_by": ref_claim.updated_by,
+    "created_by": ref_claim.created_by,
+    "owner": ref_claim.owner,
+    "encounter_id": Encounter.objects.get(id=106926),
+    "workflow_state": 'SUBMITTED_PROVIDER'
+}
+
+claim = Claim.objects.create(**cl_data)
+
 cline_data = {
-    "claim": ref_claim,
+    "claim": claim,
     "unit_price": 200,
     "quantity":10,
     "name": "Jiina",
-    "updated_by": ref_claim.updated_by,
-    "created_by": ref_claim.created_by,
-    "owner": ref_claim.owner
+    "updated_by": claim.updated_by,
+    "created_by": claim.created_by,
+    "owner": claim.owner
 }
 
 cline = ClaimLine.objects.create(**cline_data)
