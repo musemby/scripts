@@ -5,6 +5,11 @@ from time import sleep, time
 from sys import argv
 import dbus
 
+"""
+    Usage: python battery_monitor.py INT where INT is the batt level at which
+    you should be notified.
+"""
+
 
 def send_notification(title, text):
     try:
